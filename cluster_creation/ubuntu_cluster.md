@@ -67,7 +67,9 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 
 3. 
 ```
-cat << EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list deb https://apt.kubernetes.io/ kubernetes-xenial main EOF
+cat << EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list 
+deb https://apt.kubernetes.io/ kubernetes-xenial main 
+EOF
 ```
 4. `sudo apt-get update`  
 
@@ -120,9 +122,12 @@ All Worker nodes
 sudo kubeadm join $controller_private_ip:6443 --token $token --discovery-token-ca-cert-hash $hash
  ```
 
+Demo : kubeadm join 172.31.23.219:6443 --token pdizpa.mgkalhwkqvg6du82 --discovery-token-ca-cert-hash sha256:ada97328950955800b294666d679bfb543b53b5e4f695cb02650417a6bde9ec1
+
 ----------------------------------------------------------------------------
 ## Verification
 ----------------------------------------------------------------------------
 On master server run the following command -
 
 ```kubectl get nodes```
+
