@@ -1,0 +1,30 @@
+## pod definition yml has four main parts
+1. apiVersion
+2. kind
+3. metadata
+4. spec
+
+### apiVersion
+POD -> v1
+Service -> v1
+ReplicaSet -> apps/v1
+Deployment -> apps/v1
+
+### metadata
+name -> pod name
+labels -> key, value pair
+app, type etc
+
+## spec
+containers -> list/array
+    - name
+      image
+
+## command to run the pod
+kubectl create -f pod-definition.yml
+
+## to see list of pods available
+kubectl get pods
+
+## describe pod
+kubectl describe pod pod-name
