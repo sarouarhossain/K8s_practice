@@ -1,0 +1,36 @@
+## deployment :
+-> how to deploy in production
+-> update
+-> rolling update
+-> pause
+-> resume changes
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name:
+    labels:
+        app:
+        type:
+spec:
+    template:
+        metadata:
+            name:
+            type:
+        spec: -> pod spec
+            containers:
+                - name:
+                  image:
+    replicas:
+    selector:
+        matchLabels:
+            type:
+
+### commands
+kubectl create -f deployment.yaml
+kubectl get deployments
+kubectl get all
+kubectl get deployment frontend-deployment -o yaml
+kubectl create deployment deployment_name --image=image_name
+kubectl scale deployment --replicas=3 deployment_name
+
