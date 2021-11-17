@@ -25,6 +25,36 @@ kubectl create -f pod-definition.yml
 
 ## to see list of pods available
 kubectl get pods
+kubectl get pods pod-name
 
 ## describe pod
 kubectl describe pod pod-name
+
+## delete a pod
+kubectl delete pod pod-name
+
+## create a nginx pod
+kubectl run nginx --image=nginx
+
+ or
+
+apiVersion: v1
+kind: Pod
+metadata:
+    name : nginx-pod
+    labels:
+        app: nginx-test
+spec:
+    containers:
+        - name: nginx-container
+          image: nginx
+
+## check what image is used to create the pod
+kubectl describe pod pod-name | grep -i image
+
+## check pod running on which node
+kubectl get pods -o wide
+
+## edit a pod
+kubectl edit pod pod-name
+

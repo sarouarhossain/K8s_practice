@@ -1,0 +1,36 @@
+### Replica Set
+To create multiple pod, load balance and scaling
+monitor if desired number of pods are available or not
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+    name: myapp-replicaset
+    labels:
+        app: myapp
+        type: frontend
+spec:
+    template: -> pod template
+        metadata:
+            name: myapp-pod
+            labels:
+                app: myapp
+                type: frontend
+        spec:
+            containers:
+                - name: nginx-container
+                  type: nginx
+    replicas: 3
+    selector:
+        matchLabels:
+            type: front-end
+
+## commands:
+----------
+kubectl create -f fileName.yaml
+kubectl get replicaset
+kubectl scale --replicas=6 -f replicaset-file.yaml
+kubectl scale --replicas=6 replicaset myapp-replicaset(replica set name)
+kubectl delete replicaset replicaset-name
+kubectl describe replicaset replicaset-name
+kubectl edit replicaset replicaset-name
