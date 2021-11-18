@@ -1,0 +1,24 @@
+## just to test the command
+--dry-run=client
+
+## create a manifest yaml
+kubectl run nginx --image=nginx --dry-run=client -o yaml
+kubectl run redis --image=redis --labels=tier=db
+
+
+kubectl create deployment --image=nginx nginx --dry-run -o yaml
+
+kubectl create deployment nginx --image=nginx --replicas=4 --dry-run -o yaml
+
+kubectl scale deployment nginx --replicas=4
+
+kubectl create deployment nginx --image=nginx--dry-run=client -o yaml > nginx-deployment.yaml
+
+## Create a Service named redis-service of type ClusterIP to expose pod redis on port 6379
+
+kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml
+--target-port
+
+## Create a Service named nginx of type NodePort to expose pod nginx's port 80 on port 30080 on the nodes:
+
+kubectl expose pod nginx --port=80 --name nginx-service --type=NodePort --dry-run=client -o yaml

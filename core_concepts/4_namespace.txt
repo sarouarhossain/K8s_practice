@@ -1,0 +1,51 @@
+# NameSpace
+To group services under a name
+-> can define the resource quota for a namespace
+
+## Special:
+to access the service from other namespace
+service_name.namespace.svc.cluster.local
+here:-
+1. cluster.local -> domain
+2. svc -> subdomain for service
+
+## in yaml file
+metadata:
+    namespace:
+
+  OR
+create a new namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: namespace_name
+
+Set Resource Quota
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+    name:
+    namespace:
+spec:
+    hard:
+        pods: "4"
+        requests.cpu: "4"
+        requests.memory: 5Gi
+        limits.cpu: "10"
+        limits.memory: 10Gi
+
+
+## Commands
+kubectl create namespace namespace_name -> create a namespace
+kubectl config set-context $(kubectl config current-context) --namespace=namespace_name [to change default namespace]
+kubectl get pods --all-namespaces
+kubectl get pods --namespace=namespace_name
+kubectl create -f pod_def.yaml --namespace=namespace_name
+
+kubectl get ns
+kubectl get ns --no-headers
+kubectl get ns --no-headers | wc -l
+
+kubectl -n research get pods
+
+kubectl run redis --image=redis --dry-run=client -o yaml > pod.yaml
