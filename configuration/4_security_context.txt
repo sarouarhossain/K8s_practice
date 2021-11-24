@@ -1,0 +1,30 @@
+## Docker security
+ps aux -> to see processes with the process id
+docker run --user=1000 ubuntu sleep 3600
+or
+In Dockerfile
+FROM ubuntu
+USER 1000
+
+docker build -t my-image .
+
+## capabilities of a root user
+/usr/include/linux/capability.h
+
+## add/remove capabilities in container root
+docker run --cap-add MAC_ADMIN ubuntu sleep 3600
+docker run --cap-drop KILL ubuntu sleep 3600
+docker run --privileged ubuntu
+
+### Security pod
+spec:
+    securityContext: -> pod level
+        runAsUser: 1000
+    containers:
+        - name: ubuntu
+          image: ubuntu
+          command: ["sleep", "3600"]
+          securityContext: -> container level
+             runAsUser: 1000
+             capabilities:
+                add: ["MAC_ADMIN"]

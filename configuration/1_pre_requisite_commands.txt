@@ -1,0 +1,6 @@
+docker run ubuntu
+docker ps
+docker ps -a
+
+entrypoint -> command in pod
+cmd -> args

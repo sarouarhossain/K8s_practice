@@ -1,0 +1,45 @@
+## set environment variable
+spec:
+    containers:
+        name:
+        image:
+        ports:
+    - env:
+        - name:
+          value:
+
+              OR
+    - env:
+        - name:
+          valueFrom:
+            configMapKeyRef/secretKeyRef :
+                name:
+                key:
+
+              OR
+    - envFrom:
+        - configMapRef:
+            name:
+
+              OR
+        volumes:
+        - name:
+          configMap:
+            name:
+
+## yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: app-config
+data:
+    APP_COLOR: blue
+    APP_MODE: prod
+
+## Commands
+kubectl create configmap name --from-literal=<key>=<value> --from-literal=<key2>=<value2>
+kubectl create configmap name --from-file=app_config.properties
+kubectl create -f configmap.yaml
+kubectl get configmaps
+kubectl get cm
+kubectl describe configmap
