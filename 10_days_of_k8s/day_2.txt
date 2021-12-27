@@ -1,0 +1,64 @@
+
+API versions:
+-------------
+Pod: v1
+Service: v1
+ReplicaSet: apps/v1
+Deployment: apps/v1
+
+Pod definition file consists of 4 components
+------------------------------------------
+1. apiVersion
+2. kind
+3. metadata
+     name:
+     labels:
+        label1:
+        label2:
+3. spec
+     containers: -> list or array
+        - name:
+          image:
+
+Replication Controller/ Replica Set:
+-----------------------
+High Availability, Load balancing
+Single pod -> still must use Replication controller
+
+apiVersion: v1 / apps/v1 for ReplicaSet
+kind: ReplicationController / ReplicaSet
+metadata:
+  name:
+  labels:
+    label1:
+spec:
+  replicas: 3
+  selector: / nor available in replication controller
+    matchLabels:
+      label1:
+      label1:
+  template:
+    metadata
+      name:
+      labels:
+        label1:
+        label2:
+    spec
+      containers: -> list or array
+      - name:
+        image:
+
+Practice
+---------
+kubectl run nginx --image=nginx --dry-run=client -o yaml > pod.yaml
+kubectl get pods -o wide
+kubectl get replicationcontroller
+kubectl get replicaset
+kubectl replace -f replicaset-definition.yml
+kubectl scale --replicas=6 -f replicaset-definition.yml
+kubectl scale --replicas=6 replicaset replicaset-name
+kubectl get all
+kubectl rollout status deployment deployment_name
+kubectl rollout history deployment deployment_name
+kubectl rollout undo deployment_name
+kubectl set image deployment_name old_image=new_image

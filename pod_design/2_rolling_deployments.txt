@@ -1,0 +1,36 @@
+## Commands
+kubectl create -f deployment-definition.yml
+kubectl get deployments
+kubectl apply -f deployment-definition.yml
+kubectl delete deployment deployment_name
+kubectl rollout status deployment/myapp-deployment
+kubectl rollout history deployment/myapp-deployment
+kubectl rollout undo deployment/myapp-deployment
+
+## flags
+--record
+
+
+### demo Yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+    replicas: 6
+    selector:
+      matchLabels:
+        app: myapp

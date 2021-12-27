@@ -1,0 +1,4 @@
+## Commands
+kubectl get pods --selector app=App1
+kubectl get all --selector env=prod
+kubectl get all --selector env=prod,bu=finance,tier=frontend

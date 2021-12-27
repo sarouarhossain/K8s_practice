@@ -33,4 +33,5 @@ kubectl get all
 kubectl get deployment frontend-deployment -o yaml
 kubectl create deployment deployment_name --image=image_name
 kubectl scale deployment --replicas=3 deployment_name
+kubectl edit deployment my-deployment
 
