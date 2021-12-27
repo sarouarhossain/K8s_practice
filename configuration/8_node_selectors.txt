@@ -1,0 +1,17 @@
+### Label a node
+kubectl label nodes <node-name> <label-key>=<label=value>
+kubectl label nodes node-1 size=Large
+kubectl get nodes node01 --show-labels
+
+## Pod defination
+apiVersion: v1
+kind: Pod
+metadata:
+    name: myapp-pod
+spec:
+    containers:
+    - name: nginx-container
+      image: nginx
+
+    nodeSelector:
+        size: Large

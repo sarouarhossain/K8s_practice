@@ -1,0 +1,27 @@
+## commands
+-----------
+kubectl taint nodes node_name key=value:node-effect
+
+taint-effect -> NoSchedule
+             -> PreferNoSchedule
+             -> NoExecute
+
+eg: kubectl taint nodes node1 app=blue:NoSchedule
+
+practice: kubectl describe node kubemaster | grep Taint
+
+## For toleration
+apiVersion: v1
+kind: Pod
+metadata:
+    name: myapp-pod
+spec:
+    containers:
+    - name: nginx-container
+      image: nginx
+
+    tolerations:
+    - key: "app"
+      operator: "Equal"
+      value: "blue"
+      effect: "NoSchedule"
